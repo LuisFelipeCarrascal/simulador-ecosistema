@@ -4,24 +4,26 @@ public class SimuladorEcosistema {
     public static void main(String[] args) {
         char[][] ecosistema = new char[20][20];
         Random random = new Random();
-
+        final double arbol = 0.1; // hacemos constante el valor 0,1
+        final double hierba = 0.2; // hacemos constante el valor 0,2
+        final int dias = 20;
         // Inicializar ecosistema
         for (int i = 0; i < 20; i++) {
             for (int j = 0; j < 20; j++) {
                 double prob = random.nextDouble();
-                if (prob < 0.1) ecosistema[i][j] = 'A'; // Árbol
-                else if (prob < 0.2) ecosistema[i][j] = 'H'; // Hierba
+                if (prob < arbol) ecosistema[i][j] = 'A'; // Árbol
+                else if (prob < hierba) ecosistema[i][j] = 'H'; // Hierba
                 else ecosistema[i][j] = ' '; // Vacío
             }
         }
 
         // Simulación por 20 días
-        for (int dia = 1; dia <= 20; dia++) {
+        for (int dia = 1; dia <= dias; dia++) {
             System.out.println("Día " + dia);
             
             // Mostrar ecosistema
-            for (int i = 0; i < 20; i++) {
-                for (int j = 0; j < 20; j++) {
+            for (int i = 0; i < dias; i++) {
+                for (int j = 0; j < dias; j++) {
                     System.out.print(ecosistema[i][j] + " ");
                 }
                 System.out.println();
@@ -29,8 +31,8 @@ public class SimuladorEcosistema {
 
             // Actualizar ecosistema
             char[][] nuevoEcosistema = new char[20][20];
-            for (int i = 0; i < 20; i++) {
-                for (int j = 0; j < 20; j++) {
+            for (int i = 0; i < dias; i++) {
+                for (int j = 0; j < dias; j++) {
                     // Contar vecinos (integrado directamente aquí)
                     int vecinos = 0;
                     for (int di = -1; di <= 1; di++) {
